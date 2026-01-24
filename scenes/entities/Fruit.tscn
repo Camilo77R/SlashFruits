@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6g2xk8uuh88c"]
+
+[ext_resource type="Script" uid="uid://jslqxl1kl4ac" path="res://scripts/entities/fruit.gd" id="1_7muey"]
+[ext_resource type="Texture2D" uid="uid://br0vi1ypfoobg" path="res://assets/Shiny Bubble Mobile Game Assets_ vector de stock (libre de regalías) 1030247134 _ Shutterstock_files/fruit b.png" id="2_7muey"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_36j8s"]
+radius = 24.020824
+
+[node name="Fruit" type="Area2D"]
+script = ExtResource("1_7muey")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2.0000005, -3)
+scale = Vector2(0.089062475, 0.084182285)
+texture = ExtResource("2_7muey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -1)
+shape = SubResource("CircleShape2D_36j8s")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

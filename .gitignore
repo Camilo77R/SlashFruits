@@ -1,0 +1,56 @@
+# ============================
+# Godot 4+ archivos internos
+# ============================
+.godot/                 # Carpeta interna de Godot (cachés y configuraciones locales)
+.android/               # Archivos generados para builds Android
+
+# ============================
+# Archivos de importación y caché
+# ============================
+.import/                # Carpeta donde Godot guarda recursos procesados (se regeneran automáticamente)
+*.import                # Archivos de importación asociados a cada recurso, no son necesarios en el repo
+export.cfg              # Configuración de exportación (se puede regenerar)
+export_presets.cfg      # Presets de exportación, específicos de tu máquina
+export_credentials.cfg  # Credenciales privadas para exportar (¡nunca subir!)
+
+# ============================
+# Archivos temporales
+# ============================
+*.tmp                   # Archivos temporales
+*.log                   # Logs de depuración
+*.swp                   # Archivos swap de editores
+*.bak                   # Backups automáticos
+*.dmp                   # Dumps de errores
+
+# ============================
+# Traducciones
+# ============================
+*.translation           # Archivos de traducción generados por Godot
+
+# ============================
+# Mono / C# (solo si usas Godot con .NET)
+# ============================
+.mono/                  # Carpeta interna de Mono
+data_*/                 # Datos generados por Mono
+mono_crash.*.json       # Reportes de crash de Mono
+
+# ============================
+# Builds / exportaciones
+# ============================
+*.exe                   # Ejecutables Windows
+*.apk                   # Builds Android
+*.pck                   # Paquetes exportados
+*.zip                   # Archivos comprimidos
+*.tar.gz                # Archivos comprimidos Linux/macOS
+*.app                   # Aplicaciones macOS
+
+# ============================
+# Configuración del editor
+# ============================
+editor_settings-*.tres  # Configuración local del editor (cada usuario tiene la suya)
+
+# ============================
+# Archivos del sistema operativo
+# ============================
+.DS_Store               # Archivos ocultos de macOS
+Thumbs.db               # Archivos ocultos de Windows

@@ -1,0 +1,18 @@
+[
+  {
+	"id": "logic_001",
+	"game_id": "logic", 
+	"category": "sumas",
+	"question": "¿Cuánto es 5 + 8?",
+	"correct_answer": "13",
+	"difficulty": 1
+  },
+  {
+	"id": "logic_002",
+	"game_id": "logic",
+	"category": "restas",
+	"question": "¿Cuánto es 15 - 7?",
+	"correct_answer": "8",
+	"difficulty": 1
+  }
+]

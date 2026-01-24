@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Fruit-SENA-educativo"
+run/main_scene="uid://dqrgrnwn7t70q"
+config/features=PackedStringArray("4.5", "Mobile")
+config/icon="res://assets/sprites/letters/profile image app game.jpg"
+
+[autoload]
+
+GameManager="*res://scripts/core/game_manager.gd"
+QuestionLoader="*res://scripts/data/question_loader.gd"
+MetricsTracker="*res://scripts/core/metrics_tracker.gd"
+SessionManager="*res://scripts/core/session_manager.gd"
+
+[dotnet]
+
+project/assembly_name="Fruit-SENA-educativo"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

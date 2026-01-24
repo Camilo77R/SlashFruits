@@ -1,0 +1,18 @@
+[
+  {
+	"id": "cult_001",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "¿Cuál es la capital de Francia?",
+	"correct_answer": "PARIS",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_002", 
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "¿Cuál es la capital de Colombia?",
+	"correct_answer": "BOGOTA",
+	"difficulty": 1
+  }
+]
