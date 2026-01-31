@@ -29,8 +29,6 @@ signal wrong_letter_cut(letter: String)
 @export var points_per_correct: int = 10
 @export var points_per_wrong: int = 5  # Negativo = resta puntos
 
-
-
 # ============================================
 # SECCIÓN: ESTADO DEL JUEGO (VARIABLES)
 # ¿QUÉ SON? Datos que GameManager recuerda durante el juego.
@@ -44,8 +42,6 @@ var is_game_active: bool = true
 # --- NUEVAS VARIABLES PARA NIVELES ---
 var current_level: LevelData = null
 var question_loader = null
-
-
 
 # ============================================
 # SECCIÓN: MODOS DE JUEGO (ENUM)
@@ -71,21 +67,18 @@ func get_value_type_needed() -> String:
 	else:  # LOGIC
 		return "number"
 
-
-
 # ============================================
 # FUNCIÓN: _ready()
 # ¿CUÁNDO SE EJECUTA? Cuando Godot carga el GameManager.
 # ¿QUÉ HACE? Inicializa el sistema llamando a reset_game().
 # ============================================
-# Modificar _ready():
 func _ready() -> void:
 	print("[GameManager] ¡Sistema central listo!")
 	
 	# Esperar a que QuestionLoader termine de cargar
 	if has_node("/root/QuestionLoader"):
 		question_loader = get_node("/root/QuestionLoader")
-		question_loader.levels_loaded.connect(_on_levels_loaded)  # ← CONECTAR
+		question_loader.levels_loaded.connect(_on_levels_loaded)
 		print("[GameManager] Esperando que QuestionLoader cargue niveles...")
 	else:
 		print("[GameManager] ⚠️ QuestionLoader no encontrado")
@@ -95,7 +88,6 @@ func _ready() -> void:
 func _on_levels_loaded() -> void:
 	print("[GameManager] QuestionLoader terminó de cargar")
 	load_random_level()
-
 
 # --- NUEVA FUNCIÓN: load_random_level() ---
 func load_random_level() -> void:
@@ -119,8 +111,6 @@ func load_random_level() -> void:
 		# ¿Cuándo? Justo al cargar un nivel nuevo.
 		# ¿Para qué? Que padres/tutores sepan qué jugó el niño.
 		SessionManager.start_session("child_demo_id", current_level.id)
-
-
 		
 		print("[GameManager] ✅ Nivel cargado: ", current_level.id)
 		print("[GameManager] Pregunta: ", current_level.question)
@@ -128,8 +118,6 @@ func load_random_level() -> void:
 	else:
 		print("[GameManager] ⚠️ No se pudo cargar nivel, usando valores por defecto")
 		reset_game()
-
-
 
 # ============================================
 # FUNCIÓN: set_game_mode()
@@ -173,6 +161,208 @@ func is_letter_correct(letter: String) -> bool:
 	return letter == target_word[current_letter_index]
 
 # ============================================
+# FUNCION: is_next_letter_in_sequence()
+# ============================================
+# QUE HACE:
+# Verifica si una letra es exactamente la que el jugador debe cortar AHORA.
+# 
+# DIFERENCIA CON is_letter_correct():
+# - is_letter_correct(): "¿Esta letra existe en la palabra?" (mas general)
+# - is_next_letter_in_sequence(): "¿Es esta LA letra que toca cortar ahora?" (mas especifico)
+# 
+# EJEMPLO PRACTICO:
+# Si target_word = "GATO" y current_letter_index = 1
+# - is_next_letter_in_sequence("A") -> true  (es la que toca)
+# - is_next_letter_in_sequence("T") -> false (esta en la palabra pero no es la que toca)
+# - is_next_letter_in_sequence("X") -> false (ni siquiera esta en la palabra)
+# 
+# QUIEN LA LLAMA:
+# Fruit.setup() cuando se configura cada fruta
+# 
+# CUANDO SE USA:
+# Cada vez que Spawner crea una nueva fruta
+# 
+# POR QUE EXISTE:
+# Para validar el orden secuencial, no solo la existencia de la letra
+# ============================================
+func is_next_letter_in_sequence(letter: String) -> bool:
+	# Verificacion de seguridad 1: Juego activo
+	if not is_game_active:
+		return false
+	
+	# Verificacion de seguridad 2: No hemos pasado el final de la palabra
+	if current_letter_index >= target_word.length():
+		return false
+	
+	# Obtener la letra que toca en este momento
+	var expected_letter = target_word[current_letter_index]
+	
+	# Comparar
+	var is_correct = (letter == expected_letter)
+	
+	print("[GameManager] Validacion de orden:")
+	print("              Letra recibida: '", letter, "'")
+	print("              Letra esperada: '", expected_letter, "'")
+	print("              Indice actual: ", current_letter_index)
+	print("              Resultado: ", "CORRECTO" if is_correct else "INCORRECTO")
+	
+	return is_correct
+
+# ============================================
+# FUNCION: is_letter_in_word()
+# ============================================
+# QUE HACE:
+# Verifica si una letra existe EN ALGUNA PARTE de la palabra objetivo.
+# 
+# DIFERENCIA CON is_next_letter_in_sequence():
+# Esta funcion NO considera el orden, solo la existencia.
+# 
+# PARA QUE SIRVE:
+# Para diferenciar dos tipos de error:
+# 1. Letra que esta en palabra pero cortada fuera de orden (puede dar feedback especifico)
+# 2. Letra que ni siquiera esta en la palabra (error total)
+# 
+# EJEMPLO PRACTICO:
+# Si target_word = "GATO"
+# - is_letter_in_word("A") -> true  (esta en posicion 1)
+# - is_letter_in_word("T") -> true  (esta en posicion 2)
+# - is_letter_in_word("X") -> false (no existe)
+# 
+# USO EN UI:
+# Permite mostrar mensajes mas especificos:
+# - "Esa letra esta en la palabra, pero no es la que toca ahora"
+# - "Esa letra no esta en la palabra"
+# ============================================
+func is_letter_in_word(letter: String) -> bool:
+	# Verificacion de seguridad
+	if not is_game_active:
+		return false
+	
+	# Buscar la letra en toda la palabra
+	var exists = target_word.contains(letter)
+	
+	print("[GameManager] Verificacion de existencia:")
+	print("              Letra: '", letter, "'")
+	print("              Palabra: '", target_word, "'")
+	print("              Existe: ", exists)
+	
+	return exists
+
+# ============================================
+# FUNCION: handle_bomb_cut()
+# ============================================
+# QUE HACE:
+# Procesa el caso especial de cortar una bomba.
+# 
+# COMPORTAMIENTO:
+# - Game Over INMEDIATO (sin importar cuantas vidas tenga)
+# - Las vidas se ponen en 0
+# - El juego se desactiva
+# - Se registran las metricas finales
+# 
+# CUANDO SE LLAMA:
+# Desde register_fruit_cut() cuando detecta que value == "BOMB"
+# 
+# POR QUE ES ESPECIAL:
+# Porque no sigue las reglas normales de vidas.
+# Una bomba termina el juego instantaneamente.
+# 
+# FLUJO:
+# 1. Fruta bomba es cortada
+# 2. Emite señal fruit_cut("BOMB", false, false)
+# 3. Spawner llama GameManager.register_fruit_cut("BOMB", ...)
+# 4. register_fruit_cut detecta bomba y llama handle_bomb_cut()
+# 5. handle_bomb_cut() termina el juego
+# ============================================
+func handle_bomb_cut() -> void:
+	print("[GameManager] BOMBA CORTADA - Iniciando Game Over")
+	
+	# Forzar vidas a cero (para que UI lo refleje)
+	current_lives = 0
+	lives_updated.emit(current_lives)
+	
+	# Desactivar juego
+	is_game_active = false
+	
+	# Emitir señal de game over (para que UI muestre pantalla)
+	game_over.emit()
+	
+	print("[GameManager] Estado del juego:")
+	print("              Vidas restantes: ", current_lives)
+	print("              Juego activo: ", is_game_active)
+	
+	# Registrar el error en la sesion
+	SessionManager.register_error()
+	
+	# Obtener metricas finales antes de limpiar
+	var session_data: Dictionary = SessionManager.end_session()
+	var metrics_summary: Dictionary = MetricsTracker.get_session_summary()
+	
+	print("[GameManager] Metricas de sesion finalizada:")
+	print("              Total preguntas: ", metrics_summary.get("total_questions", 0))
+	print("              Precision: ", metrics_summary.get("accuracy_percentage", 0), "%")
+	
+	# TODO: Cuando ApiClient este listo, descomentar:
+	# ApiClient.send_session(session_data, metrics_summary)
+	
+	# Limpiar metricas para proxima sesion
+	MetricsTracker.reset()
+	
+	print("[GameManager] Game Over por bomba completado")
+
+# ============================================
+# FUNCION MODIFICADA: register_fruit_cut()
+# ============================================
+# CAMBIOS RESPECTO A VERSION ANTERIOR:
+# 1. Agrega parametro was_in_order
+# 2. Detecta caso especial de bomba
+# 3. Diferencia entre error de orden y error total
+# 
+# DONDE MODIFICAR:
+# Buscar la funcion register_fruit_cut() existente en game_manager.gd
+# Reemplazar TODA la funcion con esta version
+# 
+# PARAMETROS:
+#   fruit_value: El valor de la fruta cortada ("G", "5", "BOMB")
+#   was_correct: Si la letra/numero esta en la respuesta correcta
+#   was_in_order: Si era la letra que tocaba EN ESTE MOMENTO
+# 
+# QUIEN LA LLAMA:
+# Spawner._on_fruit_cut(), que a su vez recibe la señal de Fruit
+# ============================================
+func register_fruit_cut(fruit_value: String, was_correct: bool, was_in_order: bool = true) -> void:
+	# Verificacion de seguridad
+	if not is_game_active:
+		print("[GameManager] Juego no activo, ignorando corte")
+		return
+	
+	print("[GameManager] Procesando corte de fruta:")
+	print("              Valor: '", fruit_value, "'")
+	print("              Es correcta: ", was_correct)
+	print("              Esta en orden: ", was_in_order)
+	
+	# CASO ESPECIAL: BOMBA
+	# Manejo diferente porque termina el juego inmediatamente
+	if fruit_value == "BOMB":
+		print("[GameManager] Detectada bomba - desviando a handle_bomb_cut()")
+		handle_bomb_cut()
+		return
+	
+	# CASO NORMAL: LETRA O NUMERO
+	# Solo es acierto si AMBAS condiciones son verdaderas:
+	# 1. La letra es correcta (esta en la palabra)
+	# 2. Es la que toca en este momento (orden)
+	if was_correct and was_in_order:
+		print("[GameManager] Evaluacion: ACIERTO")
+		handle_correct_letter(fruit_value)
+	else:
+		# Cualquier otro caso es error:
+		# - Letra incorrecta (ni siquiera esta en palabra)
+		# - Letra correcta pero fuera de orden
+		print("[GameManager] Evaluacion: ERROR")
+		handle_wrong_letter(fruit_value)
+
+# ============================================
 # FUNCIÓN: set_new_word()
 # ¿QUÉ HACE? Cambia a una nueva palabra objetivo (sube de nivel).
 # ============================================
@@ -195,22 +385,6 @@ func reset_game() -> void:
 	score_updated.emit(current_score)
 	lives_updated.emit(current_lives)
 	print("[GameManager] Juego reiniciado. Palabra: ", target_word)
-
-# ============================================
-# FUNCIÓN: register_fruit_cut()
-# ¿QUÉ HACE? Procesa cuando cortan una fruta.
-# PRINCIPIO: Decide si fue acierto/error y actúa en consecuencia.
-# ============================================
-func register_fruit_cut(fruit_value: String, was_correct: bool) -> void:
-	if not is_game_active:
-		return
-	
-	print("[GameManager] Fruta cortada: ", fruit_value, " | Correcta: ", was_correct)
-	
-	if was_correct and fruit_value == target_word[current_letter_index]:
-		handle_correct_letter(fruit_value)
-	else:
-		handle_wrong_letter(fruit_value)
 
 # ============================================
 # FUNCIÓN: handle_correct_letter()
@@ -238,7 +412,7 @@ func handle_correct_letter(letter: String) -> void:
 
 		# NUEVO: Cerrar sesión y calcular métricas
 		var session_data: Dictionary = SessionManager.end_session()
-		var metrics: Dictionary = MetricsTracker.calculate_metrics()
+		var metrics: Dictionary = MetricsTracker.get_session_summary()  # ← CORREGIDO
 		MetricsTracker.reset()
 		# ApiClient.send_session(session_data, metrics)
 
@@ -252,7 +426,6 @@ func handle_correct_letter(letter: String) -> void:
 func handle_wrong_letter(letter: String) -> void:
 	current_score += points_per_wrong  # points_per_wrong es negativo
 	score_updated.emit(current_score)
-
 	
 	current_lives -= 1
 	lives_updated.emit(current_lives)
@@ -261,56 +434,24 @@ func handle_wrong_letter(letter: String) -> void:
 	print("❌ ¡ERROR! Letra incorrecta: ", letter)
 	print("   Puntos: ", current_score, " | Vidas: ", current_lives)
 	
-	
 	# Registrar error en SessionManager
 	# ¿Qué? Anotamos un fallo en el cuaderno.
 	# ¿Por qué? Para medir precisión y dar feedback a padres/tutores.
 	SessionManager.register_error()
+	
 	if current_lives <= 0:
 		game_over.emit()
 		is_game_active = false
 		print("💀 ¡GAME OVER! Puntuación final: ", current_score)
 		
-		#  Cerrar sesión y calcular métricas
+		# Cerrar sesión y calcular métricas
 		# ¿Qué? Cerramos el cuaderno y sacamos el boletín.
 		# ¿Por qué? Para enviar datos al backend.
 		var session_data: Dictionary = SessionManager.end_session()
-		var metrics: Dictionary = MetricsTracker.calculate_metrics()
+		var metrics: Dictionary = MetricsTracker.get_session_summary()  # ← CORREGIDO
 		MetricsTracker.reset()
 		# ApiClient.send_session(session_data, metrics) ← se hará en el paso de API
 
-
-
-# ============================================
-# AGREGAR AQUÍ (al final, antes del comentario final)
-# ============================================
-
-# FUNCIÓN: _test_switch_modes() - SOLO PARA TESTING
-func _test_switch_modes() -> void:
-	print("\n[TEST] 🔄 Iniciando prueba de cambio de modos...")
-
-	await get_tree().create_timer(5.0).timeout
-
-	set_game_mode(GameMode.LOGIC)
-	target_word = "13"
-	current_letter_index = 0
-
-	print("[TEST] 🔢 Modo LÓGICA activado")
-	print("[TEST] Palabra objetivo: '", target_word, "' (números)")
-
-	await get_tree().create_timer(10.0).timeout
-
-	set_game_mode(GameMode.CULTURE)
-	target_word = "GATO"
-	current_letter_index = 0
-
-	print("[TEST] 🔤 Modo CULTURA reactivado")
-	print("[TEST] Palabra objetivo: '", target_word, "' (letras)")
-
-# ============================================
-# CONSEJOS DE BUENA PRÁCTICA APLICADOS:
-# (este comentario ya estaba al final)
-# ============================================
 # ============================================
 # CONSEJOS DE BUENA PRÁCTICA APLICADOS:
 # 1. SINGLE RESPONSIBILITY: GameManager solo sabe reglas

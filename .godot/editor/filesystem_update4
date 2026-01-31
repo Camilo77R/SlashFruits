@@ -1,0 +1,4 @@
+res://scenes/game/spawner.tscn
+res://scripts/core/main.gd
+res://scripts/core/metrics_tracker.gd
+res://scripts/core/game_manager.gd

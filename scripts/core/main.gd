@@ -12,5 +12,6 @@ func _ready() -> void:
 	print("=== Sistema modular activado ===")
 	
 	# ⚡ TEMPORAL: Iniciar prueba de modos después de 3 segundos
-	await get_tree().create_timer(3.0).timeout
-	GameManager._test_switch_modes()
+	#comete esta no se asi qeuda ok???
+	#await get_tree().create_timer(3.0).timeout
+	#GameManager._test_switch_modes()
