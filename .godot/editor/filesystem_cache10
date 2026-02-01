@@ -1,10 +1,10 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1769964964
+::res://::1769893469
 icon.svg::CompressedTexture2D::5611592908086246690::1765852520::1765852531::1::::<><><>0<>0<>0d17b04dc84e4b3581d6dd9570b97abf<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
 ::res://assets/::1768507870
-::res://assets/data/::1769904884
-levels_culture.json::JSON::-1::1769904884::0::1::::<><><>0<>0<><>::
-levels_logic.json::JSON::-1::1769904884::0::1::::<><><>0<>0<><>::
+::res://assets/data/::1768507431
+levels_culture.json::JSON::-1::1768507431::0::1::::<><><>0<>0<><>::
+levels_logic.json::JSON::-1::1768507431::0::1::::<><><>0<>0<><>::
 ::res://assets/Shiny Bubble Mobile Game Assets_ vector de stock (libre de regalías) 1030247134 _ Shutterstock_files/::1766514881
 fruit b.png::CompressedTexture2D::3632531215961670144::1766514881::1766514881::1::::<><><>0<>0<>3e12f3692742835a50041fdb59a3226c<>res://.godot/imported/fruit b.png-d8785c303cd4ca4fe9da29afecca9dd6.ctex::
 shiny-bubble-mobile-game-assets-260nw-1030247134.jpg::::-1::1765852520::1765852520::0::::<><><>0<>0<>2d3f5fc69fbc2bea7aacac208bbdc9e3<>::
@@ -59,18 +59,18 @@ bomb-red.png::CompressedTexture2D::4846699082911733178::1766621909::1767913888::
 ::res://scenes/::1765852520
 ::res://scenes/entities/::1767982770
 Fruit.tscn::PackedScene::4576342112208767520::1767982770::0::1::::<><><>0<>0<><>::uid://jslqxl1kl4ac::::res://scripts/entities/fruit.gd<>uid://br0vi1ypfoobg::::res://assets/Shiny Bubble Mobile Game Assets_ vector de stock (libre de regalías) 1030247134 _ Shutterstock_files/fruit b.png
-::res://scenes/game/::1769893566
+::res://scenes/game/::1769814225
 Main.tscn::PackedScene::8317773348983276442::1766853763::0::1::::<><><>0<>0<><>::uid://cns8af77dlpwk::::res://scripts/core/main.gd<>uid://daggfkgxwojl1::::res://scenes/game/spawner.tscn
-spawner.tscn::PackedScene::7172022084107088228::1769893566::0::1::::<><><>0<>0<><>::uid://c0x0xlj4ie7u7::::res://scripts/core/spawner.gd<>uid://b6g2xk8uuh88c::::res://scenes/entities/Fruit.tscn
+spawner.tscn::PackedScene::7172022084107088228::1769814225::0::1::::<><><>0<>0<><>::uid://c0x0xlj4ie7u7::::res://scripts/core/spawner.gd<>uid://b6g2xk8uuh88c::::res://scenes/entities/Fruit.tscn
 ::res://scripts/::1768506470
 ::res://scripts/api/::1768506486
 api_client.gd::GDScript::1079485257212115421::1768506486::0::1::::<>Node<><>0<>0<><>::
-::res://scripts/core/::1769904884
-game_manager.gd::GDScript::8294623562314547858::1769904884::0::1::::<>Node<><>0<>0<><>::
-main.gd::GDScript::5724459108523877434::1769893945::0::1::::<>Node2D<><>0<>0<><>::
-metrics_tracker.gd::GDScript::228085483275593328::1769894937::0::1::::<>Node<><>0<>0<><>::
+::res://scripts/core/::1769814225
+game_manager.gd::GDScript::8294623562314547858::1769736041::0::1::::<>Node<><>0<>0<><>::
+main.gd::GDScript::5724459108523877434::1768334588::0::1::::<>Node2D<><>0<>0<><>::
+metrics_tracker.gd::GDScript::228085483275593328::1769814225::0::1::::<>Node<><>0<>0<><>::
 session_manager.gd::GDScript::8445800845248225892::1768513222::0::1::::<>Node<><>0<>0<><>::
-spawner.gd::GDScript::6576602737747965000::1769904884::0::1::::<>Node2D<><>0<>0<><>::
+spawner.gd::GDScript::6576602737747965000::1769814225::0::1::::<>Node2D<><>0<>0<><>::
 ::res://scripts/data/::1769814225
 level_data.gd::GDScript::28726403237490123::1768507431::0::1::::LevelData<>RefCounted<><>0<>0<><>::
 question_loader.gd::GDScript::8756210840193667955::1768508344::0::1::::<>Node<><>0<>0<><>::

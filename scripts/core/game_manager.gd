@@ -336,7 +336,7 @@ func handle_correct_letter(letter: String) -> void:
 		var metrics: Dictionary = MetricsTracker.get_session_summary()
 		MetricsTracker.reset()
 
-		load_random_level()
+		set_new_word("CASA")
 
 # ============================================
 # FUNCIÓN: handle_wrong_letter()
