@@ -1,7 +1,1 @@
-res://scenes/game/spawner.tscn
-res://scripts/core/main.gd
-res://scripts/core/metrics_tracker.gd
 res://scripts/core/game_manager.gd
-res://assets/data/levels_culture.json
-res://assets/data/levels_logic.json
-res://scripts/core/spawner.gd
