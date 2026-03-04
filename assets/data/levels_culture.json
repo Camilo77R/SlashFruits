@@ -1,18 +1,402 @@
 [
   {
-	"id": "cult_001",
+	"id": "cult_animals_001",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "¿Qué animal maúlla?",
+	"correct_answer": "GATO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_animals_002",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "¿Qué animal ladra?",
+	"correct_answer": "PERRO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_animals_003",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal que vuela",
+	"correct_answer": "AVE",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_animals_004",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Rey de la selva",
+	"correct_answer": "LEON",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_animals_005",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal con trompa",
+	"correct_answer": "ELEFANTE",
+	"difficulty": 3
+  },
+  {
+	"id": "cult_animals_006",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal rayado",
+	"correct_answer": "CEBRA",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_animals_007",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal del desierto",
+	"correct_answer": "CAMELLO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_animals_008",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal que salta mucho",
+	"correct_answer": "RANA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_animals_009",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal que vive en el mar",
+	"correct_answer": "PEZ",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_animals_010",
+	"game_id": "culture",
+	"category": "animales",
+	"question": "Animal gigante del mar",
+	"correct_answer": "BALLENA",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_colors_001",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color del cielo",
+	"correct_answer": "AZUL",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_002",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de la sangre",
+	"correct_answer": "ROJO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_003",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de la hierba",
+	"correct_answer": "VERDE",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_004",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color del sol",
+	"correct_answer": "AMARILLO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_colors_005",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de la noche",
+	"correct_answer": "NEGRO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_006",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de las nubes",
+	"correct_answer": "BLANCO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_007",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de una naranja",
+	"correct_answer": "NARANJA",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_colors_008",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Mezcla de rojo y azul",
+	"correct_answer": "MORADO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_colors_009",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de un cerdo",
+	"correct_answer": "ROSA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_colors_010",
+	"game_id": "culture",
+	"category": "colores",
+	"question": "Color de la tierra",
+	"correct_answer": "CAFE",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_capitals_001",
 	"game_id": "culture",
 	"category": "capitales",
-	"question": "¿Cuál es la capital de Francia?",
+	"question": "Capital de Francia",
 	"correct_answer": "PARIS",
 	"difficulty": 1
   },
   {
-	"id": "cult_002", 
+	"id": "cult_capitals_002",
 	"game_id": "culture",
 	"category": "capitales",
-	"question": "¿Cuál es la capital de Colombia?",
+	"question": "Capital de Colombia",
 	"correct_answer": "BOGOTA",
 	"difficulty": 1
+  },
+  {
+	"id": "cult_capitals_003",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de España",
+	"correct_answer": "MADRID",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_capitals_004",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Italia",
+	"correct_answer": "ROMA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_capitals_005",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Perú",
+	"correct_answer": "LIMA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_capitals_006",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de México",
+	"correct_answer": "MEXICO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_capitals_007",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Chile",
+	"correct_answer": "SANTIAGO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_capitals_008",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Argentina",
+	"correct_answer": "BUENOSAIRES",
+	"difficulty": 3
+  },
+  {
+	"id": "cult_capitals_009",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Brasil",
+	"correct_answer": "BRASILIA",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_capitals_010",
+	"game_id": "culture",
+	"category": "capitales",
+	"question": "Capital de Ecuador",
+	"correct_answer": "QUITO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_objects_001",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Mueble para sentarse",
+	"correct_answer": "SILLA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_002",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Mueble para comer",
+	"correct_answer": "MESA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_003",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Objeto para leer",
+	"correct_answer": "LIBRO",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_004",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Objeto para escribir",
+	"correct_answer": "LAPIZ",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_005",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Objeto para borrar",
+	"correct_answer": "BORRADOR",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_objects_006",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Para ver la hora",
+	"correct_answer": "RELOJ",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_007",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Para abrir puertas",
+	"correct_answer": "LLAVE",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_objects_008",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Para cortar papel",
+	"correct_answer": "TIJERA",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_objects_009",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Para guardar ropa",
+	"correct_answer": "CLOSET",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_objects_010",
+	"game_id": "culture",
+	"category": "objetos",
+	"question": "Para dormir",
+	"correct_answer": "CAMA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_001",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para ver",
+	"correct_answer": "OJOS",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_002",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para escuchar",
+	"correct_answer": "OIDOS",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_body_003",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para oler",
+	"correct_answer": "NARIZ",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_004",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para hablar",
+	"correct_answer": "BOCA",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_005",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para caminar",
+	"correct_answer": "PIES",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_006",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte para agarrar",
+	"correct_answer": "MANOS",
+	"difficulty": 1
+  },
+  {
+	"id": "cult_body_007",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte que piensa",
+	"correct_answer": "CEREBRO",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_body_008",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte que late",
+	"correct_answer": "CORAZON",
+	"difficulty": 2
+  },
+  {
+	"id": "cult_body_009",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Huesos del cuerpo",
+	"correct_answer": "ESQUELETO",
+	"difficulty": 3
+  },
+  {
+	"id": "cult_body_010",
+	"game_id": "culture",
+	"category": "cuerpo",
+	"question": "Parte de la cara con pelo",
+	"correct_answer": "CABELLO",
+	"difficulty": 2
   }
 ]
